@@ -1,0 +1,203 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ffd700, #3498db);
+    height: 100vh;
+    width: 100%;
+}
+
+.novoSocio {
+    background: white;
+    margin: 30px auto;
+    width: 80%;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.funcionalidades {
+    background: white;
+    margin: 30px auto;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.consultarMensalidades {
+    background: white;
+    margin: 30px auto;
+    width: 80%;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.eliminarSocio {
+    background: white;
+    margin: 30px auto;
+    width: 80%;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.infoMensalidade {
+    background: white;
+    margin: 30px auto;
+    width: 80%;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input {
+    width: 400px;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+button {
+    padding: 0.5rem 2.5rem;
+    width: fit-content;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #3498db;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+}
+
+button:hover {
+    background: #3498dbbd;
+}
+
+button:active {
+    background: #3c789fbd;
+}
+
+.novoSocio select {
+    padding: 0.5rem;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.eliminarSocio select {
+    width: 400px;
+}
+
+.infoMensalidade select {
+    padding: 0.5rem;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.consultarMensalidades select {
+    width: 250px;
+}
+
+select {
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.mensalidadesTable {
+    background: white;
+    margin: 30px auto;
+    width: fit-content;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
+}
+
+.mensalidadesTable th,
+.mensalidadesTable td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 1rem;
+}
+
+.pago {
+    background: rgb(137, 249, 137);
+}
+
+.naopago {
+    background: rgb(234, 116, 116);
+}
+
+.hidden {
+    display: none;
+}
+
+.mostrarFuncionalidade {
+    background: none;
+    color: #3498db;
+    padding: 0 5rem;
+    transition: all ease 0.4s;
+}
+
+.mostrarFuncionalidade:hover {
+    letter-spacing: 1px;
+    color: #ffd700;
+    background: none;
+}
+
+.btnDeletar {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.excluirSocio {
+    color: red;
+}
+.excluirSocio:hover {
+    color: rgba(255, 0, 0, 0.67);
+}
+
+.socioEliminarBtn {
+    padding: 0.5rem 2.5rem;
+    width: fit-content;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: red;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.socioEliminarBtn:hover {
+    background: rgba(255, 0, 0, 0.676);
+}
+
+.clicavel {
+    cursor: pointer;
+}
+
+.clicavel:hover {
+    background: rgba(219, 235, 219, 0.549);
+}

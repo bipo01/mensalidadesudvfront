@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Mensalidades UDV</title>
+
+        <link rel="stylesheet" href="style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <div class="funcionalidades">
+                <button class="mostrarFuncionalidade addNovoSocio">
+                    Adicionar Sócio
+                </button>
+                <button class="mostrarFuncionalidade salvarSocio">
+                    Efetuar Pagamento
+                </button>
+                <button class="mostrarFuncionalidade consultarTabela">
+                    Consultar Tabelas
+                </button>
+                <button class="mostrarFuncionalidade excluirSocio hidden">
+                    Excluir Sócio
+                </button>
+            </div>
+            <div class="novoSocio hidden">
+                <input
+                    autocomplete="off"
+                    type="text"
+                    name="nomesocio"
+                    id="nomesocio"
+                    placeholder="Sócio"
+                />
+                <select name="lugar" id="lugar">
+                    <option value="Quadro de Sócios">Quadro de Sócios</option>
+                    <option value="Corpo Instrutivo">Corpo Instrutivo</option>
+                    <option value="Corpo do Conselho">Corpo do Conselho</option>
+                    <option value="Quadro de Mestres">Quadro de Mestres</option>
+                </select>
+                <button class="novoSocioBtn">Adicionar Sócio</button>
+            </div>
+
+            <div class="infoMensalidade hidden">
+                <select name="socioInfo" id="socioInfo">
+                    <option value="Todos">Todos</option>
+                </select>
+
+                <select name="mesesinfo" id="mesesinfo">
+                    <option value="jan">Janeiro</option>
+                    <option value="fev">Fevereiro</option>
+                    <option value="mar">Março</option>
+                    <option value="abr">Abril</option>
+                    <option value="mai">Maio</option>
+                    <option value="jun">Junho</option>
+                    <option value="jul">Julho</option>
+                    <option value="ago">Agosto</option>
+                    <option value="setembro">Setembro</option>
+                    <option value="outubro">Outubro</option>
+                    <option value="nov">Novembro</option>
+                    <option value="dez">Dezembro</option>
+                </select>
+                <select name="pagamento" id="pagamento">
+                    <option value="Pago">Pago</option>
+                    <option value="NaoPago">Não Pago</option>
+                </select>
+
+                <button class="infoMensalidadesBtn">Salvar</button>
+            </div>
+
+            <div class="consultarMensalidades hidden">
+                <select name="socioConsulta" id="socioConsulta">
+                    <option value="Todos">Todos</option>
+                </select>
+
+                <select name="lugarConsulta" id="lugarConsulta">
+                    <option value="Todos">Todos</option>
+                    <option value="Quadro de Sócios">Quadro de Sócios</option>
+                    <option value="Corpo Instrutivo">Corpo Instrutivo</option>
+                    <option value="Corpo do Conselho">Corpo do Conselho</option>
+                    <option value="Quadro de Mestres">Quadro de Mestres</option>
+                </select>
+
+                <select name="situacaoConsulta" id="situacaoConsulta">
+                    <option value="Todos">Todos</option>
+                    <option value="Quite">Quite</option>
+                    <option value="Não Quite">Não Quite</option>
+                </select>
+                <button class="consultarMensalidadesBtn">Consultar</button>
+            </div>
+
+            <div class="eliminarSocio hidden">
+                <select name="socioEliminar" id="socioEliminar"></select>
+
+                <button class="socioEliminarBtn">Excluir Sócio</button>
+            </div>
+
+            <table class="mensalidadesTable hidden">
+                <thead>
+                    <tr>
+                        <th>Sócio</th>
+                        <th>Lugar</th>
+                        <th>Jan</th>
+                        <th>Fev</th>
+                        <th>Mar</th>
+                        <th>Abr</th>
+                        <th>Mai</th>
+                        <th>Jun</th>
+                        <th>Jul</th>
+                        <th>Ago</th>
+                        <th>Set</th>
+                        <th>Out</th>
+                        <th>Nov</th>
+                        <th>Dez</th>
+                        <th>Situação</th>
+                    </tr>
+                </thead>
+                <tbody class="tbodyTable"></tbody>
+            </table>
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>
