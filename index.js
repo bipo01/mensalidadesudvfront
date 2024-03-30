@@ -6,7 +6,7 @@ async function pegarSenha() {
     console.log(senha);
 }
 
-await pegarSenha();
+pegarSenha();
 
 //----------FUNÇÕES PARA REQUISITAR API----------//
 
