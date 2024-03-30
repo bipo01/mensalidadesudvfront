@@ -12,7 +12,7 @@ document.querySelector(".entrar").addEventListener("click", async () => {
     if (data === "Correta") {
         document.querySelector(".login").classList.add("d-none");
         document.querySelector(".funcionalidades").classList.remove("d-none");
-        optionsSocios();
+        await optionsSocios();
     } else {
         alert("Senha Incorreta");
         document.querySelector("#loginInp").value = "";
