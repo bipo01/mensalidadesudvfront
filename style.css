@@ -130,21 +130,11 @@ select {
     margin-top: 30px !important;
 }
 
+.mensalidadesTable th,
 .mensalidadesTable td {
     border: 1px solid black;
     text-align: center;
     padding: 1rem;
-}
-
-.mensalidadesTable th:first-child {
-    border-left: none !important;
-}
-
-.mensalidadesTable th {
-    text-align: center;
-    padding: 1rem;
-    border-left: 1px solid black;
-    border-radius: 10px;
 }
 
 .pago {
