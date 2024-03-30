@@ -1,9 +1,16 @@
+const senha = prompt("Senha:");
+
+//----------FUNÇÕES PARA REQUISITAR API----------//
+
+//Gerar selects com sócios e checar situação (quite ou não)
 async function optionsSocios() {
-    const response = await fetch(`https://mensalidadesudvapi.vercel.app/`);
+    const response = await fetch(
+        `https://mensalidadesudvapi.vercel.app/?senha=${senha}`
+    );
     const data = await response.json();
 
     if (data.length > 0) {
-        document.querySelector(".excluirSocio").classList.remove("hidden");
+        document.querySelector(".excluirSocio").classList.remove("d-none");
     }
 
     document.querySelector(
@@ -50,25 +57,25 @@ async function optionsSocios() {
         if (mesesQuites.length >= mesAtual) {
             dado.situacao = "Quite";
             const response = await fetch(
-                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}`
+                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
         } else {
             dado.situacao = "Não Quite";
             console.log(dado.nomesocio, dado.situacao);
             const response = await fetch(
-                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}`
+                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
         }
     });
 }
-
 optionsSocios();
 
+//Consulta mensalidades de acordo com critérios
 async function consultarMensalidades() {
-    await optionsSocios();
-    document.querySelector(".novoSocio").classList.add("hidden");
-    document.querySelector(".infoMensalidade").classList.add("hidden");
-    document.querySelector(".consultarMensalidades").classList.add("hidden");
+    optionsSocios();
+    document.querySelector(".novoSocio").classList.add("d-none");
+    document.querySelector(".infoMensalidade").classList.add("d-none");
+    document.querySelector(".consultarMensalidades").classList.add("d-none");
 
     document.querySelector(".tbodyTable").innerHTML = " ";
     const socioConsulta = document.querySelector("#socioConsulta").value;
@@ -81,11 +88,11 @@ async function consultarMensalidades() {
     let data;
 
     response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/filter?nomesocio=${socioConsulta}&situacao=${situacaoConsulta}&grau=${lugarConsulta}`
+        `https://mensalidadesudvapi.vercel.app/filter?nomesocio=${socioConsulta}&situacao=${situacaoConsulta}&grau=${lugarConsulta}&senha=${senha}`
     );
     data = await response.json();
 
-    document.querySelector(".mensalidadesTable").classList.remove("hidden");
+    document.querySelector(".mensalidadesTable").classList.remove("d-none");
 
     data.forEach(async (socio) => {
         const html = `
@@ -146,12 +153,13 @@ async function consultarMensalidades() {
     console.log(data);
 }
 
+//Adiciona novo sócio
 async function novoSocio() {
     let nomesocio = document.querySelector("#nomesocio").value;
     let lugar = document.querySelector("#lugar").value;
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/novo?nomesocio=${nomesocio}&lugar=${lugar}`
+        `https://mensalidadesudvapi.vercel.app/novo?nomesocio=${nomesocio}&lugar=${lugar}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -160,6 +168,7 @@ async function novoSocio() {
     location.reload();
 }
 
+//Adiciona ou remove meses pagos
 async function salvarInfo() {
     const nomesocio = document.querySelector("#socioInfo").value;
     const mes = document.querySelector("#mesesinfo").value;
@@ -170,7 +179,7 @@ async function salvarInfo() {
     console.log(condicao);
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/salvar?nomesocio=${nomesocio}&mes=${mes}&condicao=${condicao}`
+        `https://mensalidadesudvapi.vercel.app/salvar?nomesocio=${nomesocio}&mes=${mes}&condicao=${condicao}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -178,12 +187,13 @@ async function salvarInfo() {
     console.log(data);
 }
 
+//Exclui sócios
 async function excluir() {
     const socioEliminadoId = document.querySelector("#socioEliminar").value;
     console.log(socioEliminadoId);
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/excluir?id=${socioEliminadoId}`
+        `https://mensalidadesudvapi.vercel.app/excluir?id=${socioEliminadoId}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -191,7 +201,7 @@ async function excluir() {
 
     location.reload();
 }
-
+//Adiciona condição de "pago" ao clicar no mês em questão
 async function salvarClick() {
     const ids = this.id.split(" ");
     const mes = ids[1];
@@ -202,13 +212,14 @@ async function salvarClick() {
     console.log(condicao);
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/alternar?id=${id}&condicao=${condicao}&mes=${mes}`
+        `https://mensalidadesudvapi.vercel.app/alternar?id=${id}&condicao=${condicao}&mes=${mes}&senha=${senha}`
     );
 
     const data = await response.json();
     console.log(data);
 }
 
+//----------Botões com as funções-----------//
 document
     .querySelector(".consultarMensalidadesBtn")
     .addEventListener("click", consultarMensalidades);
@@ -221,31 +232,35 @@ document
 
 document.querySelector(".novoSocioBtn").addEventListener("click", novoSocio);
 
+//-----------Botões para esconder ou mostrar um elemento----------//
 document.querySelector(".addNovoSocio").addEventListener("click", () => {
-    document.querySelector(".novoSocio").classList.toggle("hidden");
-    document.querySelector(".infoMensalidade").classList.add("hidden");
-    document.querySelector(".mensalidadesTable").classList.add("hidden");
-    document.querySelector(".consultarMensalidades").classList.add("hidden");
+    document.querySelector(".novoSocio").classList.toggle("d-none");
+    document.querySelector(".infoMensalidade").classList.add("d-none");
+    document.querySelector(".mensalidadesTable").classList.add("d-none");
+    document.querySelector(".consultarMensalidades").classList.add("d-none");
+    document.querySelector(".eliminarSocio").classList.add("d-none");
 });
 
 document.querySelector(".excluirSocio").addEventListener("click", () => {
-    document.querySelector(".eliminarSocio").classList.toggle("hidden");
-    document.querySelector(".novoSocio").classList.add("hidden");
-    document.querySelector(".infoMensalidade").classList.add("hidden");
-    document.querySelector(".mensalidadesTable").classList.add("hidden");
-    document.querySelector(".consultarMensalidades").classList.add("hidden");
+    document.querySelector(".eliminarSocio").classList.toggle("d-none");
+    document.querySelector(".novoSocio").classList.add("d-none");
+    document.querySelector(".infoMensalidade").classList.add("d-none");
+    document.querySelector(".mensalidadesTable").classList.add("d-none");
+    document.querySelector(".consultarMensalidades").classList.add("d-none");
 });
 
 document.querySelector(".salvarSocio").addEventListener("click", () => {
-    document.querySelector(".novoSocio").classList.add("hidden");
-    document.querySelector(".infoMensalidade").classList.toggle("hidden");
-    document.querySelector(".mensalidadesTable").classList.add("hidden");
-    document.querySelector(".consultarMensalidades").classList.add("hidden");
+    document.querySelector(".novoSocio").classList.add("d-none");
+    document.querySelector(".infoMensalidade").classList.toggle("d-none");
+    document.querySelector(".mensalidadesTable").classList.add("d-none");
+    document.querySelector(".consultarMensalidades").classList.add("d-none");
+    document.querySelector(".eliminarSocio").classList.add("d-none");
 });
 
 document.querySelector(".consultarTabela").addEventListener("click", () => {
-    document.querySelector(".novoSocio").classList.add("hidden");
-    document.querySelector(".infoMensalidade").classList.add("hidden");
-    document.querySelector(".mensalidadesTable").classList.add("hidden");
-    document.querySelector(".consultarMensalidades").classList.toggle("hidden");
+    document.querySelector(".novoSocio").classList.add("d-none");
+    document.querySelector(".infoMensalidade").classList.add("d-none");
+    document.querySelector(".mensalidadesTable").classList.add("d-none");
+    document.querySelector(".consultarMensalidades").classList.toggle("d-none");
+    document.querySelector(".eliminarSocio").classList.add("d-none");
 });

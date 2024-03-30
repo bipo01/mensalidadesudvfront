@@ -14,7 +14,7 @@ body {
 .novoSocio {
     background: white;
     margin: 30px auto;
-    width: 80%;
+
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
@@ -29,7 +29,7 @@ body {
     padding: 1rem 2rem;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
-    width: 80%;
+
     display: flex;
     justify-content: space-around;
 }
@@ -37,7 +37,7 @@ body {
 .consultarMensalidades {
     background: white;
     margin: 30px auto;
-    width: 80%;
+
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
@@ -49,7 +49,7 @@ body {
 .eliminarSocio {
     background: white;
     margin: 30px auto;
-    width: 80%;
+
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
@@ -62,7 +62,7 @@ body {
 .infoMensalidade {
     background: white;
     margin: 30px auto;
-    width: 80%;
+
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
@@ -72,14 +72,13 @@ body {
 }
 
 input {
-    width: 400px;
     padding: 0.5rem;
     border-radius: 10px;
 }
 
 button {
     padding: 0.5rem 2.5rem;
-    width: fit-content;
+
     border-radius: 10px;
     border: none;
     outline: none;
@@ -101,21 +100,11 @@ button:active {
 .novoSocio select {
     padding: 0.5rem;
     border-radius: 10px;
-    width: 300px;
-}
-
-.eliminarSocio select {
-    width: 400px;
 }
 
 .infoMensalidade select {
     padding: 0.5rem;
     border-radius: 10px;
-    width: 200px;
-}
-
-.consultarMensalidades select {
-    width: 250px;
 }
 
 select {
@@ -126,7 +115,7 @@ select {
 .mensalidadesTable {
     background: white;
     margin: 30px auto;
-    width: fit-content;
+
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
@@ -179,7 +168,7 @@ select {
 
 .socioEliminarBtn {
     padding: 0.5rem 2.5rem;
-    width: fit-content;
+
     border-radius: 10px;
     border: none;
     outline: none;

@@ -13,46 +13,71 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet"
         />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
     </head>
     <body>
         <div class="container">
-            <div class="funcionalidades">
-                <button class="mostrarFuncionalidade addNovoSocio">
+            <div class="funcionalidades row">
+                <button
+                    class="mostrarFuncionalidade col-md-3 mb-3 mb-md-0 addNovoSocio"
+                >
                     Adicionar Sócio
                 </button>
-                <button class="mostrarFuncionalidade salvarSocio">
+                <button
+                    class="mostrarFuncionalidade col-md-3 mb-3 mb-md-0 salvarSocio"
+                >
                     Efetuar Pagamento
                 </button>
-                <button class="mostrarFuncionalidade consultarTabela">
+                <button
+                    class="mostrarFuncionalidade col-md-3 mb-3 mb-md-0 consultarTabela"
+                >
                     Consultar Tabelas
                 </button>
-                <button class="mostrarFuncionalidade excluirSocio hidden">
+                <button
+                    class="mostrarFuncionalidade col-md-3 mb-3 mb-md-0 excluirSocio d-none"
+                >
                     Excluir Sócio
                 </button>
             </div>
-            <div class="novoSocio hidden">
+            <div class="novoSocio d-none row">
                 <input
                     autocomplete="off"
                     type="text"
                     name="nomesocio"
                     id="nomesocio"
                     placeholder="Sócio"
+                    class="col-md-3 mb-3 mb-md-0"
                 />
-                <select name="lugar" id="lugar">
+                <select class="col-md-3 mb-3 mb-md-0" name="lugar" id="lugar">
                     <option value="Quadro de Sócios">Quadro de Sócios</option>
                     <option value="Corpo Instrutivo">Corpo Instrutivo</option>
                     <option value="Corpo do Conselho">Corpo do Conselho</option>
                     <option value="Quadro de Mestres">Quadro de Mestres</option>
                 </select>
-                <button class="novoSocioBtn">Adicionar Sócio</button>
+                <button class="novoSocioBtn col-md-3 mb-3 mb-md-0">
+                    Adicionar Sócio
+                </button>
             </div>
 
-            <div class="infoMensalidade hidden">
-                <select name="socioInfo" id="socioInfo">
+            <div class="infoMensalidade d-none row">
+                <select
+                    class="col-md-3 mb-3 mb-md-0"
+                    name="socioInfo"
+                    id="socioInfo"
+                >
                     <option value="Todos">Todos</option>
                 </select>
 
-                <select name="mesesinfo" id="mesesinfo">
+                <select
+                    class="col-md-3 mb-3 mb-md-0"
+                    name="mesesinfo"
+                    id="mesesinfo"
+                >
                     <option value="jan">Janeiro</option>
                     <option value="fev">Fevereiro</option>
                     <option value="mar">Março</option>
@@ -66,20 +91,34 @@
                     <option value="nov">Novembro</option>
                     <option value="dez">Dezembro</option>
                 </select>
-                <select name="pagamento" id="pagamento">
+                <select
+                    class="col-md-3 mb-3 mb-md-0"
+                    name="pagamento"
+                    id="pagamento"
+                >
                     <option value="Pago">Pago</option>
                     <option value="NaoPago">Não Pago</option>
                 </select>
 
-                <button class="infoMensalidadesBtn">Salvar</button>
+                <button class="infoMensalidadesBtn col-md-3 mb-3 mb-md-0">
+                    Salvar
+                </button>
             </div>
 
-            <div class="consultarMensalidades hidden">
-                <select name="socioConsulta" id="socioConsulta">
+            <div class="consultarMensalidades d-none row">
+                <select
+                    class="col-md-3 mb-3 mb-md-0"
+                    name="socioConsulta"
+                    id="socioConsulta"
+                >
                     <option value="Todos">Todos</option>
                 </select>
 
-                <select name="lugarConsulta" id="lugarConsulta">
+                <select
+                    class="col-md-3 mb-3 mb-md-0"
+                    name="lugarConsulta"
+                    id="lugarConsulta"
+                >
                     <option value="Todos">Todos</option>
                     <option value="Quadro de Sócios">Quadro de Sócios</option>
                     <option value="Corpo Instrutivo">Corpo Instrutivo</option>
@@ -87,21 +126,33 @@
                     <option value="Quadro de Mestres">Quadro de Mestres</option>
                 </select>
 
-                <select name="situacaoConsulta" id="situacaoConsulta">
+                <select
+                    class="col-md-3 mb-3 mb-md-0"
+                    name="situacaoConsulta"
+                    id="situacaoConsulta"
+                >
                     <option value="Todos">Todos</option>
                     <option value="Quite">Quite</option>
                     <option value="Não Quite">Não Quite</option>
                 </select>
-                <button class="consultarMensalidadesBtn">Consultar</button>
+                <button class="consultarMensalidadesBtn col-md-3 mb-3 mb-md-0">
+                    Consultar
+                </button>
             </div>
 
-            <div class="eliminarSocio hidden">
-                <select name="socioEliminar" id="socioEliminar"></select>
+            <div class="eliminarSocio d-none row">
+                <select
+                    class="col-md-3 mb-3 mb-md-0"
+                    name="socioEliminar"
+                    id="socioEliminar"
+                ></select>
 
-                <button class="socioEliminarBtn">Excluir Sócio</button>
+                <button class="socioEliminarBtn col-md-3 mb-3 mb-md-0">
+                    Excluir Sócio
+                </button>
             </div>
 
-            <table class="mensalidadesTable hidden">
+            <table class="mensalidadesTable d-none">
                 <thead>
                     <tr>
                         <th>Sócio</th>
@@ -125,6 +176,11 @@
             </table>
         </div>
 
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+        ></script>
         <script src="index.js"></script>
     </body>
 </html>
