@@ -6,12 +6,11 @@ async function pegarSenha() {
     console.log(senha);
 }
 
-pegarSenha();
-
 //----------FUNÇÕES PARA REQUISITAR API----------//
 
 //Gerar selects com sócios e checar situação (quite ou não)
 async function optionsSocios() {
+    pegarSenha();
     console.log(senha);
     const response = await fetch(
         `https://mensalidadesudvapi.vercel.app/dados?senha=${senha}`
