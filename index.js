@@ -9,9 +9,15 @@ async function optionsSocios() {
     );
     const data = await response.json();
 
+    console.log("A data atual é: " + data);
+
     if (data.length > 0) {
         document.querySelector(".excluirSocio").classList.remove("d-none");
+    } else {
+        document.querySelector(".excluirSocio").classList.add("d-none");
     }
+
+    document.querySelector("#nomesocio").value = "";
 
     document.querySelector(
         "#socioInfo"
@@ -47,6 +53,7 @@ async function optionsSocios() {
         const mesesQuites = [];
 
         const mesAtual = Number(new Date().getMonth()) + 1;
+        console.log(mesAtual);
 
         for (const [key, value] of mesesPagos) {
             if (value === "Pago") {
@@ -59,20 +66,30 @@ async function optionsSocios() {
             const response = await fetch(
                 `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
+            const data = await response.json();
+            console.log(data);
         } else {
             dado.situacao = "Não Quite";
             console.log(dado.nomesocio, dado.situacao);
             const response = await fetch(
                 `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
+            const data = await response.json();
+            console.log(data);
         }
     });
+
+    document.querySelector(".novoSocio").classList.add("d-none");
+    document.querySelector(".infoMensalidade").classList.add("d-none");
+    document.querySelector(".mensalidadesTable").classList.add("d-none");
+    document.querySelector(".consultarMensalidades").classList.add("d-none");
+    document.querySelector(".eliminarSocio").classList.add("d-none");
 }
 optionsSocios();
 
 //Consulta mensalidades de acordo com critérios
 async function consultarMensalidades() {
-    optionsSocios();
+    await optionsSocios();
     document.querySelector(".novoSocio").classList.add("d-none");
     document.querySelector(".infoMensalidade").classList.add("d-none");
     document.querySelector(".consultarMensalidades").classList.add("d-none");
@@ -165,7 +182,7 @@ async function novoSocio() {
     const data = await response.json();
 
     console.log(data);
-    location.reload();
+    await optionsSocios();
 }
 
 //Adiciona ou remove meses pagos
@@ -199,7 +216,7 @@ async function excluir() {
     const data = await response.json();
     console.log(data);
 
-    location.reload();
+    await optionsSocios();
 }
 //Adiciona condição de "pago" ao clicar no mês em questão
 async function salvarClick() {
