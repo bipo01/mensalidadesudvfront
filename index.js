@@ -1,16 +1,15 @@
 let senha;
 
-async function pegarSenha() {
-    const response = await fetch(`https://mensalidadesudvapi.vercel.app/`);
-    senha = await response.json();
-    console.log(senha);
-}
+document.querySelector(".entrar").addEventListener("click", () => {
+    senha = document.querySelector("#loginInp").value;
+
+    optionsSocios();
+});
 
 //----------FUNÇÕES PARA REQUISITAR API----------//
 
 //Gerar selects com sócios e checar situação (quite ou não)
 async function optionsSocios() {
-    pegarSenha();
     console.log(senha);
     const response = await fetch(
         `https://mensalidadesudvapi.vercel.app/dados?senha=${senha}`
@@ -93,7 +92,6 @@ async function optionsSocios() {
     document.querySelector(".consultarMensalidades").classList.add("d-none");
     document.querySelector(".eliminarSocio").classList.add("d-none");
 }
-optionsSocios();
 
 //Consulta mensalidades de acordo com critérios
 async function consultarMensalidades() {
