@@ -2,6 +2,7 @@ let senha;
 
 document.querySelector(".entrar").addEventListener("click", () => {
     senha = document.querySelector("#loginInp").value;
+    document.querySelector(".login").classList.add("d-none");
 
     optionsSocios();
 });
