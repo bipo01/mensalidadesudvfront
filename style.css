@@ -24,6 +24,7 @@ body {
 }
 
 .funcionalidades {
+    margin-top: 30px !important;
     background: white;
     margin: 30px auto;
     padding: 1rem 2rem;
@@ -79,7 +80,7 @@ input {
 button {
     padding: 0.5rem 2.5rem;
 
-    border-radius: 10px;
+    border-radius: 10px !important;
     border: none;
     outline: none;
     background: #3498db;
@@ -119,6 +120,14 @@ select {
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.313);
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+    margin-top: 30px !important;
 }
 
 .mensalidadesTable th,
@@ -189,4 +198,11 @@ select {
 
 .clicavel:hover {
     background: rgba(219, 235, 219, 0.549);
+}
+
+.dadosSemCri {
+    color: black;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 50px;
 }

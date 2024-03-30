@@ -1,10 +1,22 @@
 let senha;
 
-document.querySelector(".entrar").addEventListener("click", () => {
+document.querySelector(".entrar").addEventListener("click", async () => {
     senha = document.querySelector("#loginInp").value;
-    document.querySelector(".login").classList.add("d-none");
 
-    optionsSocios();
+    const response = await fetch(
+        `https://mensalidadesudvapi.vercel.app/?senha=${senha}`
+    );
+    const data = await response.json();
+    console.log(data);
+
+    if (data === "Correta") {
+        document.querySelector(".login").classList.add("d-none");
+        document.querySelector(".funcionalidades").classList.remove("d-none");
+        optionsSocios();
+    } else {
+        alert("Senha Incorreta");
+        document.querySelector("#loginInp").value = "";
+    }
 });
 
 //----------FUNÇÕES PARA REQUISITAR API----------//
@@ -108,73 +120,79 @@ async function consultarMensalidades() {
 
     console.log(socioConsulta, lugarConsulta, situacaoConsulta);
 
-    let response;
-    let data;
-
-    response = await fetch(
+    const response = await fetch(
         `https://mensalidadesudvapi.vercel.app/filter?nomesocio=${socioConsulta}&situacao=${situacaoConsulta}&grau=${lugarConsulta}&senha=${senha}`
     );
-    data = await response.json();
+    const data = await response.json();
 
-    document.querySelector(".mensalidadesTable").classList.remove("d-none");
+    if (data.length > 0) {
+        document.querySelector(".mensalidadesTable").classList.remove("d-none");
 
-    data.forEach(async (socio) => {
-        const html = `
-                    <tr class="${
-                        socio.situacao === "Quite" ? "pago" : "naopago"
-                    }">
-                        <td>${socio.nomesocio}</td>
-                        <td>${socio.grau}</td>
-                        <td id="${socio.id} jan" class="clicavel">${
-            socio.jan || " "
-        }</td>
-                        <td id="${socio.id} fev" class="clicavel">${
-            socio.fev || " "
-        }</td>
-                        <td id="${socio.id} mar" class="clicavel">${
-            socio.mar || " "
-        }</td>
-                        <td id="${socio.id} abr" class="clicavel">${
-            socio.abr || " "
-        }</td>
-                        <td id="${socio.id} mai" class="clicavel">${
-            socio.mai || " "
-        }</td>
-                        <td id="${socio.id} jun" class="clicavel">${
-            socio.jun || " "
-        }</td>
-                        <td id="${socio.id} jul" class="clicavel">${
-            socio.jul || " "
-        }</td>
-                        <td id="${socio.id} ago" class="clicavel">${
-            socio.ago || " "
-        }</td>
-                        <td id="${socio.id} setembro" class="clicavel">${
-            socio.setembro || " "
-        }</td>
-                        <td id="outubro" class="clicavel">${
-                            socio.outubro || " "
-                        }</td>
-                        <td id="${socio.id} nov" class="clicavel">${
-            socio.nov || " "
-        }</td>
-                        <td id="${socio.id} dez" class="clicavel">${
-            socio.dez || " "
-        }</td>
-                        <td>${socio.situacao}</td>
-                    </tr>
-                    
-               `;
+        data.forEach(async (socio) => {
+            const html = `
+                        <tr class="${
+                            socio.situacao === "Quite" ? "pago" : "naopago"
+                        }">
+                            <td>${socio.nomesocio}</td>
+                            <td>${socio.grau}</td>
+                            <td id="${socio.id} jan" class="clicavel">${
+                socio.jan || " "
+            }</td>
+                            <td id="${socio.id} fev" class="clicavel">${
+                socio.fev || " "
+            }</td>
+                            <td id="${socio.id} mar" class="clicavel">${
+                socio.mar || " "
+            }</td>
+                            <td id="${socio.id} abr" class="clicavel">${
+                socio.abr || " "
+            }</td>
+                            <td id="${socio.id} mai" class="clicavel">${
+                socio.mai || " "
+            }</td>
+                            <td id="${socio.id} jun" class="clicavel">${
+                socio.jun || " "
+            }</td>
+                            <td id="${socio.id} jul" class="clicavel">${
+                socio.jul || " "
+            }</td>
+                            <td id="${socio.id} ago" class="clicavel">${
+                socio.ago || " "
+            }</td>
+                            <td id="${socio.id} setembro" class="clicavel">${
+                socio.setembro || " "
+            }</td>
+                            <td id="outubro" class="clicavel">${
+                                socio.outubro || " "
+                            }</td>
+                            <td id="${socio.id} nov" class="clicavel">${
+                socio.nov || " "
+            }</td>
+                            <td id="${socio.id} dez" class="clicavel">${
+                socio.dez || " "
+            }</td>
+                            <td>${socio.situacao}</td>
+                        </tr>
+                        
+                   `;
 
-        document
-            .querySelector(".tbodyTable")
-            .insertAdjacentHTML("afterbegin", html);
+            document
+                .querySelector(".tbodyTable")
+                .insertAdjacentHTML("afterbegin", html);
 
-        document.querySelectorAll(".clicavel").forEach((td) => {
-            td.addEventListener("click", salvarClick);
+            document.querySelectorAll(".clicavel").forEach((td) => {
+                td.addEventListener("click", salvarClick);
+            });
         });
-    });
-    console.log(data);
+        console.log(data);
+    } else {
+        document
+            .querySelector(".table-responsive")
+            .insertAdjacentHTML(
+                "afterbegin",
+                "<p class='dadosSemCri'>Não há dados que atendam esses critérios...</p>"
+            );
+    }
 }
 
 //Adiciona novo sócio
@@ -263,6 +281,9 @@ document.querySelector(".addNovoSocio").addEventListener("click", () => {
     document.querySelector(".mensalidadesTable").classList.add("d-none");
     document.querySelector(".consultarMensalidades").classList.add("d-none");
     document.querySelector(".eliminarSocio").classList.add("d-none");
+    if (document.querySelector(".dadosSemCri")) {
+        document.querySelector(".dadosSemCri").textContent = "";
+    }
 });
 
 document.querySelector(".excluirSocio").addEventListener("click", () => {
@@ -271,6 +292,9 @@ document.querySelector(".excluirSocio").addEventListener("click", () => {
     document.querySelector(".infoMensalidade").classList.add("d-none");
     document.querySelector(".mensalidadesTable").classList.add("d-none");
     document.querySelector(".consultarMensalidades").classList.add("d-none");
+    if (document.querySelector(".dadosSemCri")) {
+        document.querySelector(".dadosSemCri").textContent = "";
+    }
 });
 
 document.querySelector(".salvarSocio").addEventListener("click", () => {
@@ -279,6 +303,9 @@ document.querySelector(".salvarSocio").addEventListener("click", () => {
     document.querySelector(".mensalidadesTable").classList.add("d-none");
     document.querySelector(".consultarMensalidades").classList.add("d-none");
     document.querySelector(".eliminarSocio").classList.add("d-none");
+    if (document.querySelector(".dadosSemCri")) {
+        document.querySelector(".dadosSemCri").textContent = "";
+    }
 });
 
 document.querySelector(".consultarTabela").addEventListener("click", () => {
@@ -287,4 +314,7 @@ document.querySelector(".consultarTabela").addEventListener("click", () => {
     document.querySelector(".mensalidadesTable").classList.add("d-none");
     document.querySelector(".consultarMensalidades").classList.toggle("d-none");
     document.querySelector(".eliminarSocio").classList.add("d-none");
+    if (document.querySelector(".dadosSemCri")) {
+        document.querySelector(".dadosSemCri").textContent = "";
+    }
 });
