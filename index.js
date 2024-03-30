@@ -1,12 +1,12 @@
 let senha;
 
-document.querySelector(".entrar").addEventListener("click", async () => {
-    senha = document.querySelector("#loginInp").value;
+async function pegarSenha() {
+    const response = await fetch(`https://mensalidadesudvapi.vercel.app/`);
+    senha = await response.json();
+    console.log(senha);
+}
 
-    document.querySelector(".login").classList.add("d-none");
-
-    await optionsSocios();
-});
+await pegarSenha();
 
 //----------FUNÇÕES PARA REQUISITAR API----------//
 
@@ -14,7 +14,7 @@ document.querySelector(".entrar").addEventListener("click", async () => {
 async function optionsSocios() {
     console.log(senha);
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/?senha=${senha}`
+        `https://mensalidadesudvapi.vercel.app/dados?senha=${senha}`
     );
     const data = await response.json();
 
