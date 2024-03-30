@@ -1,11 +1,11 @@
 let senha;
 
-document.querySelector(".entrar").addEventListener("click", () => {
+document.querySelector(".entrar").addEventListener("click", async () => {
     senha = document.querySelector("#loginInp").value;
 
     document.querySelector(".login").classList.add("d-none");
 
-    optionsSocios();
+    await optionsSocios();
 });
 
 //----------FUNÇÕES PARA REQUISITAR API----------//
