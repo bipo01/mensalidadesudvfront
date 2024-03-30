@@ -1,9 +1,18 @@
-const senha = prompt("Senha:");
+let senha;
+
+document.querySelector(".entrar").addEventListener("click", () => {
+    senha = document.querySelector("#loginInp").value;
+
+    document.querySelector(".login").classList.add("d-none");
+
+    optionsSocios();
+});
 
 //----------FUNÇÕES PARA REQUISITAR API----------//
 
 //Gerar selects com sócios e checar situação (quite ou não)
 async function optionsSocios() {
+    console.log(senha);
     const response = await fetch(
         `https://mensalidadesudvapi.vercel.app/?senha=${senha}`
     );
