@@ -28,7 +28,7 @@ document.querySelector(".entrar").addEventListener("click", async () => {
     senha = document.querySelector("#loginInp").value;
 
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/?senha=${senha}`
+        `https://mensalidadesudvapi.vercel.app/?senha=${senha}`
     );
     const data = await response.json();
     console.log(data);
@@ -49,7 +49,7 @@ document.querySelector(".entrar").addEventListener("click", async () => {
 async function optionsSocios() {
     console.log(senha);
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/dados?senha=${senha}`
+        `https://mensalidadesudvapi.vercel.app/dados?senha=${senha}`
     );
     const data = await response.json();
 
@@ -108,7 +108,7 @@ async function optionsSocios() {
         if (mesesQuites.length >= mesAtual) {
             dado.situacao = "Quite";
             const response = await fetch(
-                `https://mensalidadesudvfront.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
+                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
             const data = await response.json();
             console.log(data);
@@ -116,7 +116,7 @@ async function optionsSocios() {
             dado.situacao = "Não Quite";
             console.log(dado.nomesocio, dado.situacao);
             const response = await fetch(
-                `https://mensalidadesudvfront.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
+                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
             const data = await response.json();
             console.log(data);
@@ -156,7 +156,7 @@ async function consultarMensalidades() {
     );
 
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/filter?nomesocio=${socioConsulta}&situacao=${situacaoConsulta}&grau=${lugarConsulta}&senha=${senha}&novoencanto=${novoEncantoConsulta}&casauniao=${casaUniaoConsulta}`
+        `https://mensalidadesudvapi.vercel.app/filter?nomesocio=${socioConsulta}&situacao=${situacaoConsulta}&grau=${lugarConsulta}&senha=${senha}&novoencanto=${novoEncantoConsulta}&casauniao=${casaUniaoConsulta}`
     );
     const data = await response.json();
 
@@ -252,7 +252,7 @@ async function novoSocio() {
     console.log(nomesocio, lugar, novoEncantoAdicionar, casaUniaoAdicionar);
 
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/novo?nomesocio=${nomesocio}&lugar=${lugar}&senha=${senha}&novoencanto=${novoEncantoAdicionar}&casauniao=${casaUniaoAdicionar}`
+        `https://mensalidadesudvapi.vercel.app/novo?nomesocio=${nomesocio}&lugar=${lugar}&senha=${senha}&novoencanto=${novoEncantoAdicionar}&casauniao=${casaUniaoAdicionar}`
     );
 
     const data = await response.json();
@@ -272,7 +272,7 @@ async function salvarInfo() {
     console.log(condicao);
 
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/salvar?nomesocio=${nomesocio}&mes=${mes}&condicao=${condicao}&senha=${senha}`
+        `https://mensalidadesudvapi.vercel.app/salvar?nomesocio=${nomesocio}&mes=${mes}&condicao=${condicao}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -286,7 +286,7 @@ async function excluir() {
     console.log(socioEliminadoId);
 
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/excluir?id=${socioEliminadoId}&senha=${senha}`
+        `https://mensalidadesudvapi.vercel.app/excluir?id=${socioEliminadoId}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -305,7 +305,7 @@ async function salvarClick() {
     console.log(condicao);
 
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/alternar?id=${id}&condicao=${condicao}&mes=${mes}&senha=${senha}`
+        `https://mensalidadesudvapi.vercel.app/alternar?id=${id}&condicao=${condicao}&mes=${mes}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -323,7 +323,7 @@ async function alternarPag() {
     this.textContent = condicao;
 
     const response = await fetch(
-        `https://mensalidadesudvfront.vercel.app/alternarPag?coluna=${coluna}&condicao=${condicao}&senha=${senha}&id=${id}`
+        `https://mensalidadesudvapi.vercel.app/alternarPag?coluna=${coluna}&condicao=${condicao}&senha=${senha}&id=${id}`
     );
 
     const data = await response.json();
