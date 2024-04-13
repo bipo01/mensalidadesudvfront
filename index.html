@@ -54,6 +54,7 @@
                     Excluir Sócio
                 </button>
             </div>
+
             <div class="novoSocio d-none row">
                 <input
                     autocomplete="off"
@@ -69,6 +70,27 @@
                     <option value="Corpo do Conselho">Corpo do Conselho</option>
                     <option value="Quadro de Mestres">Quadro de Mestres</option>
                 </select>
+                <div class="col-md-3 mb-3 mb-md-0 checkboxCUDVNE">
+                    <div class="divNovoEncanto">
+                        <label for="novoEncanto">Novo Encanto</label>
+                        <input
+                            type="checkbox"
+                            name="novoEncanto"
+                            id="novoEncantoAdicionar"
+                            value="Sim"
+                        />
+                    </div>
+                    <div class="divCasaUniao">
+                        <label for="casaUniao">Casa da União</label>
+
+                        <input
+                            type="checkbox"
+                            name="casaUniao"
+                            id="casaUniaoAdicionar"
+                            value="Sim"
+                        />
+                    </div>
+                </div>
                 <button class="novoSocioBtn col-md-3 mb-3 mb-md-0">
                     Adicionar Sócio
                 </button>
@@ -145,6 +167,26 @@
                     <option value="Quite">Quite</option>
                     <option value="Não Quite">Não Quite</option>
                 </select>
+
+                <div class="col-md-3 mb-3 mb-md-0 checkboxCUDVNE">
+                    <div class="divNovoEncanto">
+                        <label for="novoEncanto">Novo Encanto</label>
+                        <select name="" id="novoEncantoConsulta">
+                            <option value="Todos">Todos</option>
+                            <option value="Sim">Pagantes</option>
+                            <option value="Não">Não pagantes</option>
+                        </select>
+                    </div>
+                    <div class="divCasaUniao">
+                        <label for="casaUniao">Casa da União</label>
+                        <select name="" id="casaUniaoConsulta">
+                            <option value="Todos">Todos</option>
+                            <option value="Sim">Pagantes</option>
+                            <option value="Não">Não pagantes</option>
+                        </select>
+                    </div>
+                </div>
+
                 <button class="consultarMensalidadesBtn col-md-3 mb-3 mb-md-0">
                     Consultar
                 </button>
@@ -180,6 +222,8 @@
                             <th>Out</th>
                             <th>Nov</th>
                             <th>Dez</th>
+                            <th>NE</th>
+                            <th>CUDV</th>
                             <th>Situação</th>
                         </tr>
                     </thead>

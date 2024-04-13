@@ -1,10 +1,34 @@
 let senha;
 
+let novoEncantoAdicionar = "Não";
+let casaUniaoAdicionar = "Não";
+
+document
+    .querySelector("#novoEncantoAdicionar")
+    .addEventListener("click", () => {
+        if (document.querySelector("#novoEncantoAdicionar").checked) {
+            novoEncantoAdicionar = "Sim";
+            console.log(novoEncantoAdicionar);
+        } else {
+            novoEncantoAdicionar = "Não";
+            console.log(novoEncantoAdicionar);
+        }
+    });
+document.querySelector("#casaUniaoAdicionar").addEventListener("click", () => {
+    if (document.querySelector("#casaUniaoAdicionar").checked) {
+        casaUniaoAdicionar = "Sim";
+        console.log(casaUniaoAdicionar);
+    } else {
+        casaUniaoAdicionar = "Não";
+        console.log(casaUniaoAdicionar);
+    }
+});
+
 document.querySelector(".entrar").addEventListener("click", async () => {
     senha = document.querySelector("#loginInp").value;
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/?senha=${senha}`
+        `https://mensalidadesudvfront.vercel.app/?senha=${senha}`
     );
     const data = await response.json();
     console.log(data);
@@ -25,7 +49,7 @@ document.querySelector(".entrar").addEventListener("click", async () => {
 async function optionsSocios() {
     console.log(senha);
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/dados?senha=${senha}`
+        `https://mensalidadesudvfront.vercel.app/dados?senha=${senha}`
     );
     const data = await response.json();
 
@@ -84,7 +108,7 @@ async function optionsSocios() {
         if (mesesQuites.length >= mesAtual) {
             dado.situacao = "Quite";
             const response = await fetch(
-                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
+                `https://mensalidadesudvfront.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
             const data = await response.json();
             console.log(data);
@@ -92,7 +116,7 @@ async function optionsSocios() {
             dado.situacao = "Não Quite";
             console.log(dado.nomesocio, dado.situacao);
             const response = await fetch(
-                `https://mensalidadesudvapi.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
+                `https://mensalidadesudvfront.vercel.app/situation?situacao=${dado.situacao}&nomesocio=${dado.nomesocio}&senha=${senha}`
             );
             const data = await response.json();
             console.log(data);
@@ -117,11 +141,22 @@ async function consultarMensalidades() {
     const socioConsulta = document.querySelector("#socioConsulta").value;
     const lugarConsulta = document.querySelector("#lugarConsulta").value;
     const situacaoConsulta = document.querySelector("#situacaoConsulta").value;
+    const novoEncantoConsulta = document.querySelector(
+        "#novoEncantoConsulta"
+    ).value;
+    const casaUniaoConsulta =
+        document.querySelector("#casaUniaoConsulta").value;
 
-    console.log(socioConsulta, lugarConsulta, situacaoConsulta);
+    console.log(
+        socioConsulta,
+        lugarConsulta,
+        situacaoConsulta,
+        novoEncantoConsulta,
+        casaUniaoConsulta
+    );
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/filter?nomesocio=${socioConsulta}&situacao=${situacaoConsulta}&grau=${lugarConsulta}&senha=${senha}`
+        `https://mensalidadesudvfront.vercel.app/filter?nomesocio=${socioConsulta}&situacao=${situacaoConsulta}&grau=${lugarConsulta}&senha=${senha}&novoencanto=${novoEncantoConsulta}&casauniao=${casaUniaoConsulta}`
     );
     const data = await response.json();
 
@@ -171,6 +206,17 @@ async function consultarMensalidades() {
                             <td id="${socio.id} dez" class="clicavel">${
                 socio.dez || " "
             }</td>
+
+                            <td class="alternavel" id="${
+                                socio.id
+                            }" coluna="novoencanto">${
+                socio.novoencanto || "Não"
+            }</td>
+                            <td class="alternavel" id="${
+                                socio.id
+                            }" coluna="casauniao">${
+                socio.casauniao || "Não"
+            }</td>
                             <td>${socio.situacao}</td>
                         </tr>
                         
@@ -182,6 +228,9 @@ async function consultarMensalidades() {
 
             document.querySelectorAll(".clicavel").forEach((td) => {
                 td.addEventListener("click", salvarClick);
+            });
+            document.querySelectorAll(".alternavel").forEach((td) => {
+                td.addEventListener("click", alternarPag);
             });
         });
         console.log(data);
@@ -200,8 +249,10 @@ async function novoSocio() {
     let nomesocio = document.querySelector("#nomesocio").value;
     let lugar = document.querySelector("#lugar").value;
 
+    console.log(nomesocio, lugar, novoEncantoAdicionar, casaUniaoAdicionar);
+
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/novo?nomesocio=${nomesocio}&lugar=${lugar}&senha=${senha}`
+        `https://mensalidadesudvfront.vercel.app/novo?nomesocio=${nomesocio}&lugar=${lugar}&senha=${senha}&novoencanto=${novoEncantoAdicionar}&casauniao=${casaUniaoAdicionar}`
     );
 
     const data = await response.json();
@@ -221,7 +272,7 @@ async function salvarInfo() {
     console.log(condicao);
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/salvar?nomesocio=${nomesocio}&mes=${mes}&condicao=${condicao}&senha=${senha}`
+        `https://mensalidadesudvfront.vercel.app/salvar?nomesocio=${nomesocio}&mes=${mes}&condicao=${condicao}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -235,7 +286,7 @@ async function excluir() {
     console.log(socioEliminadoId);
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/excluir?id=${socioEliminadoId}&senha=${senha}`
+        `https://mensalidadesudvfront.vercel.app/excluir?id=${socioEliminadoId}&senha=${senha}`
     );
 
     const data = await response.json();
@@ -254,7 +305,25 @@ async function salvarClick() {
     console.log(condicao);
 
     const response = await fetch(
-        `https://mensalidadesudvapi.vercel.app/alternar?id=${id}&condicao=${condicao}&mes=${mes}&senha=${senha}`
+        `https://mensalidadesudvfront.vercel.app/alternar?id=${id}&condicao=${condicao}&mes=${mes}&senha=${senha}`
+    );
+
+    const data = await response.json();
+    console.log(data);
+}
+
+//Alternar entre Pagante e Não Pagante:
+async function alternarPag() {
+    console.log(this.getAttribute("coluna"));
+    console.log(this.textContent);
+    const coluna = this.getAttribute("coluna");
+    const condicao = this.textContent === "Sim" ? "Não" : "Sim";
+    const id = Number(this.id);
+
+    this.textContent = condicao;
+
+    const response = await fetch(
+        `https://mensalidadesudvfront.vercel.app/alternarPag?coluna=${coluna}&condicao=${condicao}&senha=${senha}&id=${id}`
     );
 
     const data = await response.json();

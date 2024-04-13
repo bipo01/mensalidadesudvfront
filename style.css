@@ -192,11 +192,13 @@ select {
     background: rgba(255, 0, 0, 0.676);
 }
 
-.clicavel {
+.clicavel,
+.alternavel {
     cursor: pointer;
 }
 
-.clicavel:hover {
+.clicavel:hover,
+.alternavel:hover {
     background: rgba(219, 235, 219, 0.549);
 }
 
@@ -205,4 +207,38 @@ select {
     font-size: 1.5rem;
     text-align: center;
     margin-top: 50px;
+}
+
+.consultarMensalidades select {
+    width: 100px !important;
+    font-size: 12px !important;
+}
+
+.novoSocio #nomesocio {
+    width: 250px !important;
+}
+.novoSocio select {
+    width: 250px !important;
+}
+
+.checkboxCUDVNE {
+    display: flex;
+    width: 300px !important;
+    justify-content: space-between;
+    padding-bottom: 25px !important;
+}
+
+.divNovoEncanto,
+.divCasaUniao {
+    display: flex;
+    flex-direction: column;
+}
+
+table thead th {
+    border: none !important;
+    border-right: 1px solid black !important;
+}
+
+.mensalidadesTable thead th:last-child {
+    border-right: none !important;
 }
